@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import store.domain.Product;
 import store.domain.Products;
+import store.domain.Promotions;
 
 public class LoaderTest {
 
@@ -18,7 +19,8 @@ public class LoaderTest {
 
     @Test
     public void 상품목록을_읽어온다(){
-        Products products = loader.loadProducts();
+        Promotions promotions = loader.loadPromotions();
+        Products products = loader.loadProducts(promotions);
         System.out.println(products.toString());
     }
 

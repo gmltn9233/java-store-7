@@ -24,13 +24,13 @@ public class Loader {
         return new Promotions(promotions);
     }
 
-    public Products loadProducts(){
+    public Products loadProducts(Promotions promotions){
         List<Product> products = new ArrayList<>();
         FilePath filePath = FilePath.PRODUCTS;
         List<String> tokens = fileReader.readFile(filePath);
         for(String token : tokens){
             List<String> product = parseByComma(token);
-            products.add(new Product(product));
+            products.add(registerProduct(product,promotions));
         }
         return new Products(products);
     }
@@ -42,6 +42,13 @@ public class Loader {
         return output;
     }
 
+    private Product registerProduct(List<String> input, Promotions promotions){
+        String name = input.get(0);
+        String price = input.get(1);
+        String quantity = input.get(2);
+        Promotion promotion = promotions.getPromotionByName(input.get(3));
+        return new Product(name,price,quantity,promotion);
+    }
 
 
 
