@@ -16,10 +16,10 @@ public class StoreController {
     }
 
     public void sale() {
-        while(true){
+        while (true) {
             OutputView.printProducts(storeService.getProducts());
             purchaseProducts();
-            if(!InputView.repurchaseCheck().getResponse()){
+            if (!InputView.repurchaseCheck().getResponse()) {
                 break;
             }
         }
@@ -27,28 +27,28 @@ public class StoreController {
     }
 
     private void purchaseProducts() {
-        while(true){
-            try{
+        while (true) {
+            try {
                 OrderRequest orderRequest = requestOrder();
                 OrderResponse orderResponse = storeService.order(orderRequest);
-                if(membershipCheck()){
+                if (membershipCheck()) {
                     orderResponse.setMembership();
                 }
                 OutputView.print(orderResponse.toString());
                 break;
-            }catch (StoreException e){
+            } catch (StoreException e) {
                 System.out.println(e.getMessage());
             }
         }
 
     }
 
-    private boolean membershipCheck(){
-        while (true){
+    private boolean membershipCheck() {
+        while (true) {
             try {
                 YesNoRequest yesNoRequest = InputView.membershipCheck();
                 return yesNoRequest.getResponse();
-            }catch (StoreException e){
+            } catch (StoreException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -64,7 +64,6 @@ public class StoreController {
             }
         }
     }
-
 
 
 }

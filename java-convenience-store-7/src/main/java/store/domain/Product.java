@@ -47,16 +47,16 @@ public class Product {
     public int getMaxPromotion(int quantity) {
         int gift = 0;
         if (!validQuantity(quantity)) {
-            gift  = promotion.getMaxPurchase(this.quantity);
+            gift = promotion.getMaxPurchase(this.quantity);
             return gift + freePromotionCheck(quantity);
         }
         gift = promotion.getMaxPurchase(quantity);
         return gift + freePromotionCheck(quantity);
     }
 
-    private int freePromotionCheck(int quantity){
-        if(promotion.freeGiftCheck(quantity) && this.quantity >= quantity + promotion.getGet()){
-            if(InputView.freePromotionCheck(name,promotion.getGet()).getResponse()){
+    private int freePromotionCheck(int quantity) {
+        if (promotion.freeGiftCheck(quantity) && this.quantity >= quantity + promotion.getGet()) {
+            if (InputView.freePromotionCheck(name, promotion.getGet()).getResponse()) {
                 this.quantity -= promotion.getGet();
                 return promotion.getGet();
             }
@@ -69,11 +69,12 @@ public class Product {
         return Pattern.matches(VALID_NUMBER_REGEX, input);
     }
 
-    private void valid(int quantity){
-        if(!validQuantity(quantity)){
+    private void valid(int quantity) {
+        if (!validQuantity(quantity)) {
             throw new StoreException("재고 수량을 초과하여 구매할 수 없습니다. 다시 입력해 주세요.");
         }
     }
+
     private boolean validQuantity(int quantity) {
         return this.quantity >= quantity;
     }
@@ -82,8 +83,8 @@ public class Product {
     public String toString() {
         StringBuilder output = new StringBuilder();
         output.append("- " + name + " " + priceFormat() + "원 ");
-        String quantityToString = quantity+"개 ";
-        if(quantity == 0){
+        String quantityToString = quantity + "개 ";
+        if (quantity == 0) {
             quantityToString = "재고 없음";
         }
         output.append(quantityToString);

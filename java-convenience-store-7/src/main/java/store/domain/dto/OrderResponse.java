@@ -86,7 +86,7 @@ public class OrderResponse {
     private String finalPrice() {
         StringBuilder output = new StringBuilder();
         output.append("내실돈\t\t\t ");
-        output.append(priceFormat(totalPrice-totalGiftPrice-calculateMembershipDiscount()));
+        output.append(priceFormat(totalPrice - totalGiftPrice - calculateMembershipDiscount()));
         output.append("\r\n");
         return output.toString();
     }

@@ -1,6 +1,5 @@
 package store.service;
 
-import java.nio.file.LinkPermission;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import store.domain.Product;
@@ -21,7 +20,7 @@ public class StoreService {
     public OrderResponse order(OrderRequest orderRequest) {
         Map<Product, Integer> orders = convertProduct(orderRequest);
         Map<Product, Integer> gifts = products.purchaseProducts(orderRequest);
-        return new OrderResponse(orders,gifts);
+        return new OrderResponse(orders, gifts);
     }
 
     private Map<Product, Integer> convertProduct(OrderRequest orderRequest) {
@@ -29,7 +28,7 @@ public class StoreService {
         Map<Product, Integer> orders = new LinkedHashMap<>();
         input.forEach(((name, quantity) -> {
             Product product = products.findByName(String.valueOf(name));
-            orders.put(product,quantity);
+            orders.put(product, quantity);
         }));
         return orders;
     }
