@@ -10,8 +10,8 @@ public class StoreConfig {
         FileReader fileReader = new FileReader();
         Loader loader = new Loader(fileReader);
         Promotions promotions = loader.loadPromotions();
-        Products products = loader.loadProducts();
-        StoreService storeService = new StoreService();
-        return new StoreController(products,promotions,storeService);
+        Products products = loader.loadProducts(promotions);
+        StoreService storeService = new StoreService(products,promotions);
+        return new StoreController(storeService);
     }
 }
