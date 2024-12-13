@@ -16,7 +16,7 @@ public class OrderRequest {
         Map<String, Integer> orderRequest = new LinkedHashMap<>();
         List<String> orders = parse(input, ",");
         for (String order : orders) {
-            order.replaceAll("\\[|\\]", "");
+            order = order.replaceAll("\\[|\\]", "");
             List<String> tokens = parse(order, "-");
             valid(tokens);
             orderRequest.put(tokens.get(0), Integer.parseInt(tokens.get(1)));
@@ -35,7 +35,7 @@ public class OrderRequest {
         if (!isValidSize(input)) {
             throw new StoreException("주문 형식이 어긋납니다.");
         }
-        if (isDigit(input.get(1))) {
+        if (!isDigit(input.get(1))) {
             throw new StoreException("주문 갯수는 숫자 형식이여야 합니다.");
         }
     }
